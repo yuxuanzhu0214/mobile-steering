@@ -2,7 +2,7 @@ import vgamepad as vg
 import time
 
 gamepad = vg.VX360Gamepad()
-print("Setting up xbox controller...")
+
 # press a button to wake the device up
 gamepad.press_button(button=vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
 gamepad.update()
@@ -23,9 +23,8 @@ gamepad.right_joystick_float(x_value_float=-1.0, y_value_float=1.0)
 
 gamepad.update()
 
-sleep_time = float(10.0)
-print(f"Sleeping {sleep_time} seconds to visualize results")
-time.sleep(sleep_time)
+print("Wait for a while to see the reaction on Xbox tester...")
+time.sleep(10.0)
 
 # release buttons and things
 gamepad.release_button(button=vg.XUSB_BUTTON.XUSB_GAMEPAD_A)
