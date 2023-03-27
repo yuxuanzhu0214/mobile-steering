@@ -20,6 +20,6 @@ while True:
     sock.send(json_data.encode("utf-8"))
     response = sock.recv(1024).decode("utf-8")
     response_data = json.loads(response)
-    print(f"Received response: {response_data['response']}")
+    print(f"Received response: {response_data}")
 
 sock.close()
