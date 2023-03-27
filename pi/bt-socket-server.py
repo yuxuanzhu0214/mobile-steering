@@ -1,4 +1,3 @@
-import bluetooth
 import json
 import socket
 
