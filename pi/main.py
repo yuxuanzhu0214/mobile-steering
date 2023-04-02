@@ -16,6 +16,7 @@ print(f"Listening on port {port}...")
 client_sock,address = server_sock.accept()
 print("Accepted connection from ",address)
 
+count = 0
 while True:
     #modify button input here
     button_inputs = {
@@ -44,6 +45,11 @@ while True:
     RIGHT_JOY_X: 0,
     RIGHT_JOY_Y: 0
     }
+
+    # change LEFT_JOY_X and A for testing purposes
+    button_inputs[A] = count % 2
+    button_inputs[LEFT_JOY_X] = count % 32767
+    count += 1
 
     json_inputs = json.dumps(button_inputs)
     client_sock.send(json_inputs.encode("utf-8"))

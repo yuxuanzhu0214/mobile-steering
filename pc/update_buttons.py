@@ -3,6 +3,7 @@ from mapping import *
 
 
 def update_gamepad(button_inputs, gamepad):
+    button_inputs = {int(k): v for k, v in button_inputs.items()}
     if button_inputs[DPAD_UP]:
         gamepad.press_button(button=vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_UP)
     else:
