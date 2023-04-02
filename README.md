@@ -8,12 +8,12 @@ On PC, install `vgamepad` package by running
 
 
 ### Bluetooth Pairing
-Make sure bluetooth is turned on on your laptop. \
+Make sure bluetooth is turned on on your PC. \
 Then, ssh into RPi and run
 
     hciconfig
 
-The bluetooth address is in BD Address section. 
+The bluetooth address is `xx:xx:xx:xx:xx:xx` in BD Address section. 
 
     hci0:   Type: Primary  Bus: UART
             BD Address: xx:xx:xx:xx:xx:xx  ACL MTU: 1021:8  SCO MTU: 64:1
@@ -26,7 +26,7 @@ Copy that address to `pi/main.py` and replace it with the current `bd_addr` vari
 In this setup, we are setting RPi as our server such that the bluetooth socket can bind to this address and listen for connection from PC. 
 
 
-The following steps are copied from this [guide video](https://www.youtube.com/watch?v=DmtJBc229Rg) I found really useful. The steps are executed to pair RPi with laptop. 
+The following steps are copied from this [guide video](https://www.youtube.com/watch?v=DmtJBc229Rg) I found really useful. The steps are executed to pair RPi with PC. 
 
 On RPi, run the following command
 
@@ -61,18 +61,19 @@ In the console, run the following commands one by one
     agent on
     default-agent
 
-Then you will be able to find the device on laptop and prompted to pair with RPi via bluetooth. 
+Then you will be able to find the device on PC and prompted to pair with RPi via bluetooth. 
 
-Finally, we have to trust our laptop this command on RPi
+Finally, we have to trust our PC this command on RPi, where `<PC MAC address>` is shown on the RPi console once connected
 
-    trust <laptop MAC address>
+    trust <PC MAC address>
+
     
 ### Starting the Program
 On RPi, `cd` into `pi` folder and run
 
     python main.py
 
-On laptop, `cd` into `pc` folder and run
+On PC, `cd` into `pc` folder and run
 
     python main.py
 
