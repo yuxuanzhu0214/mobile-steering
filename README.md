@@ -23,16 +23,58 @@ The bluetooth address in BD Address section.
 
 
 Copy that address to `pi/main.py` and replace it with the current `bd_addr` variable. \
-In this setup, we are setting RPi as our server such that the bluetooth socket can bind to this address and listens for connections from PC.
+In this setup, we are setting RPi as our server such that the bluetooth socket can bind to this address and listens for connections from PC. 
+
+
+The following steps are copied from this [guide video](https://www.youtube.com/watch?v=DmtJBc229Rg) I found really useful. 
+
+On RPi, run the following command
+
+    sudo nano /lib/systemd/system/bluetooth.service
+
+Add a `-C` after `/usr/libexec/bluetooth/bluetoothd` in `ExecStart` so it looks like
+
+    ExecStart=/usr/libexec/bluetooth/bluetoothd -C
+
+Save the file and reboot RPi by running 
+
+    sudo reboot
+
+After robooting, run
+
+    sudo service bluetooth status
+
+To make sure the `CGroup` field looks like the following
+
+    CGroup: /system.slice/bluetooth.service
+        └─804 /usr/libexec/bluetooth/bluetoothd -C
+
+Then, enter the command to start pairing
+
+    sudo bluetoothctl
+
+In the console, run the following commands
+
+    power on
+    pairable on
+    discoverable on
+    agent on
+    default-agent
+
+Then you will be able to find the device on laptop and pair with RPi via bluetooth. Finally, we have to trust our laptop by running
+
+    trust <laptop MAC address>
 
 
 
+### Starting Program
+On RPi, `cd` into `pi` folder and run
 
-## Installation
+    python main.py
 
-Instructions on how to install the project go here.
+On laptop, `cd` into `pc` folder and run
 
-```bash
-$ git clone https://github.com/username/project.git
-$ cd project
-$ npm install
+    python main.py
+
+
+
