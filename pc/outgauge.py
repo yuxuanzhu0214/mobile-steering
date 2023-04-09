@@ -44,7 +44,7 @@ while True:
 	result["engineTemp"] = engineTemp
 	print(result)
 	
-	# time.sleep(1)
+	# time.sleep(1) sleep will queue up the game data so the updates won't be timely
 	
 # Release the socket.
 sock.close()
