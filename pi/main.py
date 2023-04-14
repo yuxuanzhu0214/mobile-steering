@@ -2,9 +2,12 @@ import json
 import socket
 from mapping import *
 import time
+import requests
 
 STEERING_WHEEL2_BD_ADDR = "E4:5F:01:BF:51:A8"
 PC1_BD_ADDR = "E0:94:67:F8:12:12"
+LOCAL_BACKEND_URL = "http://127.0.0.1:3000/car"
+
 bd_addr = STEERING_WHEEL2_BD_ADDR
 server_sock=socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 
@@ -46,11 +49,6 @@ while True:
     RIGHT_JOY_Y: 0
     }
 
-    # change LEFT_JOY_X and A for testing purposes
-    button_inputs[A] = count % 2
-    button_inputs[LEFT_JOY_X] = count % 32767
-    count += 1
-
     json_inputs = json.dumps(button_inputs)
     client_sock.send(json_inputs.encode("utf-8"))
     data = client_sock.recv(1024)
@@ -58,9 +56,10 @@ while True:
         print("Invalid data, connection stopped...")
         break
     resonse = data.decode('utf-8')
-    json_response = json.loads(data)
-    print(f"Parsed JSON data: {json_response}")
-    time.sleep(0.5)
+    car_data = json.loads(data)
+    # post car info updates to backend
+    requests.post(LOCAL_BACKEND_URL, json = car_data)
+    print(f"Parsed JSON data: {car_data}")
 
 client_sock.close()
 server_sock.close()
