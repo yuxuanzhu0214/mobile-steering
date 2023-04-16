@@ -12,6 +12,7 @@ print("Bind to BeamNG OutGauge")
 sock.bind(('127.0.0.1', 4444))
 print("Binding successful")
 
+
 while True:
 	# Receive data.
 	print("Receiving data")

@@ -1,4 +1,4 @@
-#mapping constnats
+#mapping constants
 DPAD_UP = 0
 DPAD_DOWN = 1
 DPAD_LEFT = 2
@@ -20,3 +20,4 @@ LEFT_JOY_X = 17
 LEFT_JOY_Y = 18
 RIGHT_JOY_X = 19
 RIGHT_JOY_Y = 20
+
