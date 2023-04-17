@@ -18,8 +18,8 @@ print(f"Listening on port {port}...")
 client_sock,address = server_sock.accept()
 print("Accepted connection from ",address)
 
-FPS = 20
-sleep_time = 1/FPS
+# FPS = 20
+# sleep_time = 1/FPS
 while True:
     data = client_sock.recv(1024)
     if not data:
@@ -28,13 +28,13 @@ while True:
     client_sock.send(b'A')
     resonse = data.decode('utf-8')
     data = json.loads(data)
-    car_data = []
+    car_data = {}
     car_data["speed"] = data[0]
     car_data["rpm"] = data[1]
     car_data["gear"] = data[2]
     # post car info updates to backend
     requests.post(LOCAL_BACKEND_URL, json = car_data)
     print(f"Parsed JSON data: {car_data}")
-    time.sleep(sleep_time)
+    # time.sleep(sleep_time)
 client_sock.close()
 server_sock.close()
