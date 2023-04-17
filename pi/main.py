@@ -51,6 +51,10 @@ while True:
 
     json_inputs = json.dumps(button_inputs)
     client_sock.send(json_inputs.encode("utf-8"))
+    response = client_sock.recv(1024)
+    if not response:
+        print("Invalid response, connection dropped...")
+    
     
     # data = client_sock.recv(1024)
     # if not data:

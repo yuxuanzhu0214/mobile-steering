@@ -18,16 +18,12 @@ sock=socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOM
 sock.connect((bd_addr, port))
 print(f"Connected to {bd_addr} on port {port}")
 
-
-sock_outgauge = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock_outgauge.bind(('127.0.0.1', 4444))
-print("Binding with game successful")
-
-
 while True:
     button_inputs_json = sock.recv(1024).decode("utf-8")
     button_inputs = json.loads(button_inputs_json)
     print(f"Received response: {button_inputs}")
+    ack_message = b'A'
+    sock.send(ack_message) 
     gamepad = update_gamepad(button_inputs, gamepad)
     gamepad.update()
     
