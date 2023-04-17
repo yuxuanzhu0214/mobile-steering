@@ -25,7 +25,7 @@ while True:
     if not data:
         print("Invalid data, connection stopped...")
         break
-    
+    client_sock.send(b'A')
     resonse = data.decode('utf-8')
     data = json.loads(data)
     car_data = []

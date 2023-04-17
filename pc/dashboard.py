@@ -31,6 +31,7 @@ while True:
     json_data = json.dumps(response)
     # send data to rpi
     sock.send(json_data.encode("utf-8"))
+    response = sock.recv(1024)
     
 
 sock.close()
