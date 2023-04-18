@@ -1,2 +1,0 @@
-PYXInput==0.9.0
-pybluez==9.0.1

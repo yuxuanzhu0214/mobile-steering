@@ -18,8 +18,8 @@ print(f"Listening on port {port}...")
 client_sock,address = server_sock.accept()
 print("Accepted connection from ",address)
 
-# FPS = 20
-# sleep_time = 1/FPS
+FPS = 20
+sleep_time = 1/FPS
 while True:
     data = client_sock.recv(1024)
     if not data:
@@ -35,6 +35,6 @@ while True:
     # post car info updates to backend
     requests.post(LOCAL_BACKEND_URL, json = car_data)
     print(f"Parsed JSON data: {car_data}")
-    # time.sleep(sleep_time)
+    time.sleep(sleep_time)
 client_sock.close()
 server_sock.close()

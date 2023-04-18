@@ -15,4 +15,3 @@ while True:
     carData["speed"] += 1
     carData["speed"] %= 220
     requests.post(url, json = carData)
-    # time.sleep(0.05)

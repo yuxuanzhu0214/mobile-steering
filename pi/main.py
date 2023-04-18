@@ -57,9 +57,5 @@ while True:
     if not data:
         print("Invalid data, connection stopped...")
         break
-    # resonse = data.decode('utf-8')
-    # json_response = json.loads(data)
-    # print(f"Parsed JSON data: {json_response}")
-    # time.sleep(0.5)
 client_sock.close()
 server_sock.close()
