@@ -1,6 +1,5 @@
 import socket
 from helper import read_outauge
-import fcntl
 
 
 sock_outgauge = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -17,7 +16,6 @@ while True:
     response = read_outauge(data)
     #writing the output to data.txt
     f = open('data.txt', 'w')
-    fcntl.flock(f.fileno(), fcntl.LOCK_EX)
     for num in response:
         f.write(str(num) + '\n')
     f.close()

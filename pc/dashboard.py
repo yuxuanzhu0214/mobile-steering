@@ -1,6 +1,5 @@
 import json
 import socket
-import fcntl
 from mapping import *
 from helper import read_outauge
 
@@ -18,11 +17,10 @@ print(f"Connected to {bd_addr} on port {port}...")
 
 while True:
     f = open('data.txt', 'r')
-    fcntl.flock(f.fileno(), fcntl.LOCK_EX)
     data = [int(line.strip()) for line in f]
     f.close()
-    
-    json_data = json.dumps(data)
-    # send data to rpi
-    sock.send(json_data.encode("utf-8"))
-    response = sock.recv(1024)
+    if len(data) == 3:
+        json_data = json.dumps(data)
+        # send data to rpi
+        sock.send(json_data.encode("utf-8"))
+        response = sock.recv(1024)
