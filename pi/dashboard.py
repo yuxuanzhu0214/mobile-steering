@@ -34,6 +34,14 @@ while True:
     car_data["speed"] = data[0]
     car_data["rpm"] = data[1]
     car_data["gear"] = data[2]
+    # change gear to correct value
+    gear = int(data[2])
+    if gear == 0:
+        car_data["gear"] = "R"
+    elif gear == 1:
+        car_data["gear"] = "N"
+    elif gear > 1:
+        car_data["gear"] = str(gear - 1)
     # post car info updates to backend
     requests.post(LOCAL_BACKEND_URL, json = car_data)
     print(f"Parsed JSON data: {car_data}")
